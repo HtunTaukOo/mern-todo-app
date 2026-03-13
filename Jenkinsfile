@@ -24,12 +24,13 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(
                     credentialsId: 'dockerhub',
-                    usernameVariable: 'ht024112001',
-                    passwordVariable: '123456789'
+                    usernameVariable: 'USER',
+                    passwordVariable: 'PASS'
                 )]) {
-
-                    sh 'docker login -u $USER -p $PASS'
-                    sh 'docker push $IMAGE_NAME'
+                    sh '''
+                    echo $PASS | docker login -u $USER --password-stdin
+                    docker push $IMAGE_NAME
+                    '''
                 }
             }
         }
