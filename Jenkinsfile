@@ -9,7 +9,8 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'npm install'
+                sh 'cd TODO/todo_backend && npm install'
+                sh 'cd TODO/todo_frontend && npm install'
             }
         }
 
